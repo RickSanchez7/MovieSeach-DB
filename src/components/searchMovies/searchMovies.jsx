@@ -10,7 +10,7 @@ function SearchMovies() {
   const searchMovies = async (event) => {
     event.preventDefault();
 
-    const url = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIEDB_API}=${query}`;
+    const url = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIEDB_API}=${query}`;
 
     try {
       const res = await fetch(url);
