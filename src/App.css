@@ -3,20 +3,23 @@
 }
 html {
   font-size: 10px;
+  /* background-color: rgb(244, 244, 244); */
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+        to bottom,
+        rgba(176, 210, 231, 0.9),
+        rgba(228, 229, 230, 0.9)
+      )
+      no-repeat fixed,
+    url('./assets/background.jpg') no-repeat center fixed;
+  background-size: cover;
 }
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(244, 244, 244);
-  color: #333;
-}
-
-p {
-  font-size: 1.6rem;
-}
-
-small {
-  font-size: 1.2rem;
+  /* color: #333; */
+  color: #1e90ff;
 }
 
 .container {
@@ -26,6 +29,7 @@ small {
 }
 
 .title {
+  /* padding-top: 30px; */
   font-size: 4.4rem;
   text-align: center;
 }

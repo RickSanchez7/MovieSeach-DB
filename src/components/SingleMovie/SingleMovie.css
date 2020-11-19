@@ -1,0 +1,99 @@
+:root {
+  --blue: #4682b4;
+}
+
+.button {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.loader {
+  display: flex;
+  font-size: 150px;
+  margin: 50px auto;
+}
+
+.description {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  color: var(--blue);
+}
+
+.description-item {
+  flex-direction: column;
+  text-align: center;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+}
+
+.image-title {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  color: var(--blue);
+  font-size: 2rem;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  color: var(--blue);
+  font-size: 2rem;
+}
+
+.rating h2 {
+  font-weight: bold;
+}
+
+.star-rating {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  color: #f5c518;
+}
+
+.story {
+  margin-top: 30px;
+  color: var(--blue);
+}
+
+.story h3 {
+  font-size: 1.5rem;
+}
+
+.story p {
+  margin-top: 10px;
+  line-height: 20px;
+}
+
+.cast {
+  margin-top: 20px;
+  color: var(--blue);
+}
+
+.cast h3 {
+  font-size: 1.5rem;
+}
+
+.cast p {
+  margin-top: 10px;
+  line-height: 20px;
+}
+
+.awards {
+  margin-top: 20px;
+  color: var(--blue);
+}
+
+.awards h3 {
+  font-size: 1.5rem;
+}
+
+.awards p {
+  margin-top: 10px;
+  line-height: 20px;
+}
