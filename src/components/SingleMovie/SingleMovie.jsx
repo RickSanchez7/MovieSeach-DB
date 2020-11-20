@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaStarHalfAlt, FaStar, FaRegStar, FaArrowLeft } from 'react-icons/fa';
@@ -12,7 +12,7 @@ const SingleMovie = ({ match }) => {
   const [error, setError] = useState({ show: false, msg: '' });
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchMovie = async () => {
+  const fetchMovie = useCallback(async () => {
     const url = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIEDB_API}&i=${id}&plot=full`;
 
     setIsLoading(true);
@@ -30,12 +30,11 @@ const SingleMovie = ({ match }) => {
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [setMovie, setError, setIsLoading, id]);
 
   useEffect(() => {
     fetchMovie();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [fetchMovie]);
 
   if (isLoading) {
     return <Loading />;

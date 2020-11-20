@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import Loading from '../loading';
@@ -11,7 +11,7 @@ function SearchMovies() {
 
   const [movies, setMovies] = useState([]);
 
-  const searchMovies = async () => {
+  const searchMovies = useCallback(async () => {
     const url = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIEDB_API}&s=${query}`;
 
     setIsLoading(true);
@@ -30,7 +30,7 @@ function SearchMovies() {
     } catch (err) {
       console.log(err);
     }
-  };
+  }, [setError, setIsLoading, setMovies, query]);
 
   useEffect(() => {
     let timeoutId = setTimeout(() => {
@@ -38,8 +38,7 @@ function SearchMovies() {
     }, 500);
 
     return () => clearTimeout(timeoutId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
+  }, [searchMovies]);
 
   let handleChange = e => {
     setQuery(e.target.value);
@@ -69,7 +68,7 @@ function SearchMovies() {
   return (
     <>
       <h1 className='title'> React Movie Search</h1>
-      <div className='container' ref={wrapperRef}>
+      <div className='container main' ref={wrapperRef}>
         <div className={`dropdown ${query && !error.show ? 'is-active' : ''}`}>
           <div className='tutorial'>
             <label htmlFor='query' className='label'>
