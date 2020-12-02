@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaStarHalfAlt, FaStar, FaRegStar, FaArrowLeft } from 'react-icons/fa';
 
-import Loading from '../loading';
-import './SingleMovie.css';
+import Loading from '../Loading';
+// import './SingleMovie.css';
 
 const SingleMovie = ({ match }) => {
   const id = match.params.id;
@@ -42,9 +42,9 @@ const SingleMovie = ({ match }) => {
 
   if (error.show) {
     return (
-      <div className='page-error'>
+      <div className="page-error">
         <h1>{error.msg}</h1>
-        <Link to='/' className='button is-link'>
+        <Link to="/" className="button is-link">
           back to movies
         </Link>
       </div>
@@ -66,21 +66,21 @@ const SingleMovie = ({ match }) => {
 
   return (
     <>
-      <Link to='/' className='button is-primary'>
+      <Link to="/" className="button is-primary">
         <FaArrowLeft />
         {'  '} Back
       </Link>
-      <div className='container'>
-        <figure className='img'>
+      <div className="container">
+        <figure className="img">
           <img src={Poster} alt={Poster} />
         </figure>
-        <h2 className='image-title'>
+        <h2 className="image-title">
           <b>{Title}</b>
         </h2>
-        <div className='rating'>
+        <div className="rating">
           <h2>{imdbRating}</h2>
         </div>
-        <div className='star-rating'>
+        <div className="star-rating">
           {imdbRating >= 2 ? (
             <FaStar />
           ) : imdbRating === 0 ? (
@@ -117,45 +117,45 @@ const SingleMovie = ({ match }) => {
             <FaStarHalfAlt />
           )}
         </div>
-        <div className='description'>
-          <div className='description-item'>
+        <div className="description">
+          <div className="description-item">
             <h4>Length</h4>
             <h4>
               <b>{Runtime}</b>
             </h4>
           </div>
-          <div className='description-item'>
+          <div className="description-item">
             <h4>Genre</h4>
             <h4>
               <b>{Genre}</b>
             </h4>
           </div>
-          <div className='description-item'>
+          <div className="description-item">
             <h4>Director</h4>
             <h4>
               <b>{Director}</b>
             </h4>
           </div>
-          <div className='description-item'>
+          <div className="description-item">
             <h4>Year</h4>
             <h4>
               <b>{Year}</b>
             </h4>
           </div>
         </div>
-        <div className='story'>
+        <div className="story">
           <h3>
             <b>Storyline</b>
           </h3>
           <p>{Plot}</p>
         </div>
-        <div className='cast'>
+        <div className="cast">
           <h3>
             <b>Cast</b>
           </h3>
           <p>{Actors}</p>
         </div>
-        <div className='awards'>
+        <div className="awards">
           <h3>
             <b>Awards</b>
           </h3>

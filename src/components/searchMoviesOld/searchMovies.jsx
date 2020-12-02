@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
-import Loading from '../loading';
-import './searchMovies.styles.css';
+import Loading from '../Loading';
+// import './searchMovies.styles.css';
 
 function SearchMovies() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,14 +40,14 @@ function SearchMovies() {
     return () => clearTimeout(timeoutId);
   }, [searchMovies]);
 
-  let handleChange = e => {
+  let handleChange = (e) => {
     setQuery(e.target.value);
   };
 
   // Close dropdown when clicking outside
-  const useOutsideAlerter = ref => {
+  const useOutsideAlerter = (ref) => {
     useEffect(() => {
-      const handleClickOutside = e => {
+      const handleClickOutside = (e) => {
         if (ref.current && !ref.current.contains(e.target)) {
           setQuery('');
         }
@@ -67,31 +67,31 @@ function SearchMovies() {
 
   return (
     <>
-      <h1 className='title'> React Movie Search</h1>
-      <div className='container main' ref={wrapperRef}>
+      <h1 className="title"> React Movie Search</h1>
+      <div className="container main" ref={wrapperRef}>
         <div className={`dropdown ${query && !error.show ? 'is-active' : ''}`}>
-          <div className='tutorial'>
-            <label htmlFor='query' className='label'>
+          <div className="tutorial">
+            <label htmlFor="query" className="label">
               <b>Movie Name</b>
             </label>
             <input
-              className='input'
-              type='text'
-              name='query'
-              placeholder='i.e. Fight Club'
+              className="input"
+              type="text"
+              name="query"
+              placeholder="i.e. Fight Club"
               value={query}
               onChange={handleChange}
             />
-            <div className='error'>
+            <div className="error">
               {error.show && query.length > 0 ? error.msg : ''}
             </div>
           </div>
-          <div className='dropdown-menu'>
-            <div className='dropdown-content results'>
+          <div className="dropdown-menu">
+            <div className="dropdown-content results">
               {isLoading ? (
                 <Loading />
               ) : (
-                movies.map(movie => {
+                movies.map((movie) => {
                   const { imdbID: id, Poster, Title } = movie;
                   const imgSrc =
                     Poster === 'N/A'
@@ -101,9 +101,9 @@ function SearchMovies() {
                     <Link
                       to={`/movies/${id}`}
                       key={id}
-                      className='dropdown-item'
+                      className="dropdown-item"
                     >
-                      <div className='item'>
+                      <div className="item">
                         <img src={imgSrc} alt={Title + 'poster'} />
                         {Title}
                       </div>
