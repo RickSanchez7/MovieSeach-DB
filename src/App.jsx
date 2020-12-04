@@ -6,7 +6,9 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
 import SingleShow from './pages/SingleShow';
+import SinglePerson from './pages/SinglePerson';
 import NotFound from './pages/NotFound';
+import ScrollToTop from './components/ScrollToTop';
 
 // const Home = lazy(() => import('./pages/Home'));
 // const Movies = lazy(() => import('./pages/Movies'));
@@ -16,6 +18,7 @@ import NotFound from './pages/NotFound';
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Switch>
         {/* <Suspense fallback={<Loading />}> */}
@@ -23,6 +26,7 @@ const App = () => {
         <Route path="/shows/:media/:id" component={SingleShow} />
         <Route path="/movies" component={Movies} />
         <Route path="/tv" component={Movies} />
+        <Route path="/person/:id" component={SinglePerson} />
         <Route component={NotFound} />
         {/* </Suspense> */}
       </Switch>

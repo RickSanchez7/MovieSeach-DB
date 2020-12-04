@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
 
@@ -18,11 +19,11 @@ const Cast = ({ cast }) => {
               : `${smallImageUrl}${imagePath}`;
 
           return (
-            <div className="cast" key={id}>
+            <NavLink to={`/person/${id}`} className="cast" key={id}>
               <img src={image} alt={name} />
               <h3>{character}</h3>
               <p>{name}</p>
-            </div>
+            </NavLink>
           );
         })}
       </div>

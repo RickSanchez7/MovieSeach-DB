@@ -26,11 +26,11 @@ export const fetchAll = async (url = '') => {
   }
 };
 
-export const FetchSingleShow = async (mediaType, id) => {
+export const FetchDetails = async (type, id) => {
   try {
     const res = await axios({
       method: 'GET',
-      baseURL: `https://api.themoviedb.org/3/${mediaType}/${id}?api_key=${process.env.REACT_APP_REACT_MOVIEDB_API}&language=en-US&include_adult=false`,
+      baseURL: `https://api.themoviedb.org/3/${type}/${id}?api_key=${process.env.REACT_APP_REACT_MOVIEDB_API}&language=en-US&include_adult=false`,
     });
     return res;
   } catch (error) {

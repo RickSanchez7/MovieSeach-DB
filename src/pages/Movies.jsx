@@ -8,7 +8,6 @@ import './Movies.scss';
 
 const Movies = ({ match }) => {
   const [title, setTitle] = useState("what's popular");
-  // const [media, setMedia] = useState('movie');
   const [whatKind, setWhatKind] = useState('popular');
 
   //fetch url
@@ -28,6 +27,7 @@ const Movies = ({ match }) => {
       <div className="filters">
         <h2>Show me:</h2>
         <div className="control">
+          {/* eslint-disable-next-line */}
           <label
             className="radio"
             onClick={() => handleClick("what's popular", media, 'popular')}
@@ -35,6 +35,7 @@ const Movies = ({ match }) => {
             <input type="radio" name="answer" defaultChecked />
             popular
           </label>
+          {/* eslint-disable-next-line */}
           <label
             className="radio"
             onClick={() => handleClick('top rated', media, 'top_rated')}

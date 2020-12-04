@@ -15,8 +15,6 @@ const Home = () => {
   const [query, setQuery] = useState('');
   const [shows, setShows] = useState([]);
 
-  const randomNumber = Math.floor(Math.random() * 10);
-
   const fetchMovie = async () => {
     const res = await fetchFeatured('trending/all/day');
     const { data } = res;
@@ -52,7 +50,7 @@ const Home = () => {
     useEffect(() => {
       const handleClickOutside = (e) => {
         if (ref.current && !ref.current.contains(e.target)) {
-          setQuery('');
+          setQuery(query);
         }
       };
 
@@ -79,7 +77,7 @@ const Home = () => {
         <div
           className="img-background"
           style={{
-            backgroundImage: `url(${ImageUrl}${featured.results[randomNumber].backdrop_path})`,
+            backgroundImage: `url(${ImageUrl}${featured.results[0].backdrop_path})`,
           }}
         />
         <div className="home-input" ref={wrapperRef}>

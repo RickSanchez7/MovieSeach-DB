@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import { fetchFeatured } from '../../utils/fetchData';
-import colorPicker from '../../utils/colorPicker';
 import { smallImageUrl } from '../../utils/url';
 import Loading from '../Loading/Loading';
+import CardList from '../CardList/CardList';
 
 import './Featured.scss';
 
@@ -74,14 +73,23 @@ const Featured = ({ mediaType, headTitle }) => {
                 : `${smallImageUrl}${imagePath}`;
 
             return (
-              <Link to={`/shows/${media}/${id}`} className="featured" key={id}>
-                <img src={image} alt={name} />
-                <h3>{title || name}</h3>
-                <div className="information">
-                  <h2 style={{ color: `${colorPicker(rating)}` }}>{rating}</h2>
-                  <p>{releaseDate || firstAirDate}</p>
-                </div>
-              </Link>
+              // <Link to={`/shows/${media}/${id}`} className="featured" key={id}>
+              //   <img src={image} alt={name} />
+              //   <h3>{title || name}</h3>
+              //   <div className="information">
+              //     <h2 style={{ color: `${colorPicker(rating)}` }}>{rating}</h2>
+              //     <p>{releaseDate || firstAirDate}</p>
+              //   </div>
+              // </Link>
+              <CardList
+                key={id}
+                id={id}
+                image={image}
+                title={title || name}
+                releaseDate={releaseDate || firstAirDate}
+                rating={rating}
+                link={`/shows/${media}/${id}`}
+              />
             );
           }
         )}

@@ -57,7 +57,7 @@ const Carousel = ({ mediaType, id }) => {
       <h1>Recommended</h1>
       <div className="section-center">
         {shows.results.map((show, showIndex) => {
-          const { id: showId, backdrop_path: imagePath, title } = show;
+          const { id: showId, backdrop_path: imagePath, title, name } = show;
           const image =
             imagePath === null
               ? 'https://ctkbiotech.com/wp/wp-content/uploads/2018/03/not-available.jpg'
@@ -78,7 +78,7 @@ const Carousel = ({ mediaType, id }) => {
             <div className={`article ${position}`} key={showId}>
               <Link to={`/shows/${mediaType}/${showId}`}>
                 <img src={image} alt={title} className={`show-img `} />
-                <p className={`title `}>{title}</p>
+                <p className={`title `}>{title || name}</p>
               </Link>
             </div>
           );

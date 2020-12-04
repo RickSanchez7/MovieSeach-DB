@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { FaArrowLeft, FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import Cast from '../components/Cast/Cast';
 import Carousel from '../components/Carousel/Carousel';
 import Loading from '../components/Loading/Loading';
 import colorPicker from '../utils/colorPicker';
 
-import { FetchSingleShow, FetchCast } from '../utils/fetchData';
+import { FetchDetails, FetchCast } from '../utils/fetchData';
 import { ImageUrl, smallImageUrl } from '../utils/url';
 
 import './SingleShow.scss';
@@ -22,7 +22,7 @@ const SingleShow = () => {
   const [production, setProduction] = useState([]);
 
   const fetchShow = useCallback(async () => {
-    const res = await FetchSingleShow(mediaType, id);
+    const res = await FetchDetails(mediaType, id);
     const { data } = res;
 
     setShow(data);
@@ -74,10 +74,10 @@ const SingleShow = () => {
   return (
     <>
       <section className="hero-container">
-        <Link to="/" className="button is-primary">
+        <NavLink to="/" className="button is-primary">
           <FaArrowLeft />
-          <p> Back</p>
-        </Link>
+          <p>Home</p>
+        </NavLink>
         <div
           className="img-background"
           style={{
