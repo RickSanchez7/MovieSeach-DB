@@ -9,7 +9,7 @@ import CardList from '../CardList/CardList';
 
 import './Popular.scss';
 
-const Popular = ({ containerTitle, media, whatKind }) => {
+const Popular = ({ containerTitle, media, whatKind, myRef }) => {
   const [shows, setShows] = useState([]);
 
   const setImagebutton = useCallback(
@@ -31,7 +31,7 @@ const Popular = ({ containerTitle, media, whatKind }) => {
   return (
     <>
       <section className="section-popular">
-        <h1>{containerTitle}</h1>
+        <h1 ref={myRef}>{containerTitle}</h1>
         <div className="container-popular">
           {shows.map(
             ({
@@ -73,4 +73,9 @@ Popular.propTypes = {
   containerTitle: PropTypes.string.isRequired,
   media: PropTypes.string.isRequired,
   whatKind: PropTypes.string.isRequired,
+  myRef: PropTypes.oneOfType([
+    PropTypes.func,
+
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]).isRequired,
 };

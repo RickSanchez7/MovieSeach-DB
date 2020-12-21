@@ -6,11 +6,14 @@
   padding-bottom: 10px;
   border-radius: 10px;
   box-shadow: $shadow-light;
-  max-width: 152px;
+  max-width: 150px;
+  min-width: 150px;
+  overflow: hidden;
   position: relative;
 
   @media screen and (max-width: 800px) {
-    max-width: 127px;
+    max-width: 125px;
+    min-width: 125px;
   }
 
   img {
@@ -18,13 +21,13 @@
     min-width: 150px;
     max-width: 150px;
     display: block;
-    overflow: hidden;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 
     @media screen and (max-width: 800px) {
       height: 150px;
       min-width: 125px;
+      max-width: 125px;
     }
   }
 
@@ -48,14 +51,27 @@
     }
   }
 
+  .favorite-movie {
+    transform: scale(2.5);
+    margin-top: 1.5rem;
+    margin-left: 125px;
+    z-index: 8;
+    color: $color-primary;
+    border-radius: 50%;
+    cursor: pointer;
+
+    @media screen and (max-width: 800px) {
+      margin-left: 100px;
+    }
+  }
+
   .information {
     display: flex;
     flex-direction: column;
-    margin: 0.75rem;
-    margin: 3rem 0.75rem 0.75rem;
+    margin: 1.5rem 0.75rem 0.75rem;
 
     @media screen and (max-width: 800px) {
-      margin: 2rem 0.75rem 0.75rem;
+      margin: 0.5rem 0.75rem 0.75rem;
     }
 
     h3 {

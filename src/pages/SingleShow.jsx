@@ -11,6 +11,7 @@ import { FetchDetails, FetchCast } from '../utils/fetchData';
 import { ImageUrl, smallImageUrl } from '../utils/url';
 
 import './SingleShow.scss';
+import AddFavoriteMovie from '../components/AddFavoriteMovie/AddFavoriteMovie';
 
 const SingleShow = () => {
   const params = window.location.pathname.split('/');
@@ -113,6 +114,13 @@ const SingleShow = () => {
                 {StarPicker(7.5, 6.5)}
                 {StarPicker(10, 8.5)}
               </div>
+              <AddFavoriteMovie
+                className="like-movie"
+                id={rating}
+                titleOrName={title || name}
+                imageUrl={`${smallImageUrl}${Poster}`}
+                link={`/shows/${mediaType}/${id}`}
+              />
             </div>
 
             <div className="production">

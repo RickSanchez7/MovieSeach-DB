@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
 
@@ -10,6 +10,16 @@ const Movies = ({ match }) => {
   const [title, setTitle] = useState("what's popular");
   const [whatKind, setWhatKind] = useState('popular');
 
+  // scroll up movies result on click
+  const myRef = useRef(null);
+
+  const executeScroll = () =>
+    myRef.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start',
+    });
+
   //fetch url
   const x = match.path;
   let media = x.split('/')[1];
@@ -17,10 +27,18 @@ const Movies = ({ match }) => {
     media = 'movie';
   }
 
-  const handleClick = (titleToshow, mediaType, kind) => {
-    setTitle(titleToshow);
-    setWhatKind(kind);
-  };
+  const handleClick = useCallback(
+    (titleToshow, kind) => {
+      setTitle(titleToshow);
+      setWhatKind(kind);
+    },
+    // eslint-disable-next-line
+    [title, whatKind]
+  );
+
+  useEffect(() => {
+    executeScroll();
+  }, [handleClick]);
 
   return (
     <div className="section-movies">
@@ -30,7 +48,7 @@ const Movies = ({ match }) => {
           {/* eslint-disable-next-line */}
           <label
             className="radio"
-            onClick={() => handleClick("what's popular", media, 'popular')}
+            onClick={() => handleClick("what's popular", 'popular')}
           >
             <input type="radio" name="answer" defaultChecked />
             popular
@@ -38,14 +56,19 @@ const Movies = ({ match }) => {
           {/* eslint-disable-next-line */}
           <label
             className="radio"
-            onClick={() => handleClick('top rated', media, 'top_rated')}
+            onClick={() => handleClick('top rated', 'top_rated')}
           >
             <input type="radio" name="answer" />
             top rated
           </label>
         </div>
       </div>
-      <Popular containerTitle={title} media={media} whatKind={whatKind} />
+      <Popular
+        containerTitle={title}
+        media={media}
+        whatKind={whatKind}
+        myRef={myRef}
+      />
     </div>
   );
 };

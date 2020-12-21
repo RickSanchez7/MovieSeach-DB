@@ -6,7 +6,6 @@ import Person from '../components/Person/Person';
 
 const SinglePerson = () => {
   const params = window.location.pathname.split('/');
-  // const person = params[2];
   const id = params[2];
 
   const [person, setPerson] = useState('');

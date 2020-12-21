@@ -143,6 +143,13 @@
           font-size: 2rem;
           color: $color-yellow;
         }
+
+        .like-movie {
+          color: $color-primary;
+          font-size: 3rem;
+          margin-left: 1rem;
+          cursor: pointer;
+        }
       }
 
       .production {

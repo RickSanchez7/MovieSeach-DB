@@ -31,70 +31,68 @@ const Featured = ({ mediaType, headTitle }) => {
     return <Loading />;
   }
   return (
-    <section className="section-featured">
-      <div className="titles">
-        <h1 id="headTitle">{headTitle}</h1>
-        <div className="timeButtons">
-          {/* eslint-disable-next-line */}
-          <div
-            id="btnDay"
-            type="button"
-            className={`${active === 'day' ? 'active' : ''}`}
-            onClick={() => toggleTrending('day')}
-          >
-            <p>day</p>
+    <>
+      {!shows ? (
+        <Loading />
+      ) : (
+        <section className="section-featured">
+          <div className="titles">
+            <h1 id="headTitle">{headTitle}</h1>
+            <div className="timeButtons">
+              {/* eslint-disable-next-line */}
+              <div
+                id="btnDay"
+                type="button"
+                className={`${active === 'day' ? 'active' : ''}`}
+                onClick={() => toggleTrending('day')}
+              >
+                <p>day</p>
+              </div>
+              {/* eslint-disable-next-line */}
+              <div
+                id="btnWeek"
+                type="button"
+                className={`${active === 'week' ? 'active' : ''}`}
+                onClick={() => toggleTrending('week')}
+              >
+                <p>week</p>
+              </div>
+            </div>
           </div>
-          {/* eslint-disable-next-line */}
-          <div
-            id="btnWeek"
-            type="button"
-            className={`${active === 'week' ? 'active' : ''}`}
-            onClick={() => toggleTrending('week')}
-          >
-            <p>week</p>
-          </div>
-        </div>
-      </div>
-      <div className="container-featured">
-        {shows.results.map(
-          ({
-            id,
-            title,
-            name,
-            poster_path: imagePath,
-            release_date: releaseDate,
-            first_air_date: firstAirDate,
-            vote_average: rating,
-            media_type: media,
-          }) => {
-            const image =
-              imagePath === null
-                ? 'https://ctkbiotech.com/wp/wp-content/uploads/2018/03/not-available.jpg'
-                : `${smallImageUrl}${imagePath}`;
+          <div className="container-featured">
+            {shows.results.map(
+              ({
+                id,
+                title,
+                name,
+                poster_path: imagePath,
+                release_date: releaseDate,
+                first_air_date: firstAirDate,
+                vote_average: rating,
+                media_type: media,
+              }) => {
+                const image =
+                  imagePath === null
+                    ? 'https://ctkbiotech.com/wp/wp-content/uploads/2018/03/not-available.jpg'
+                    : `${smallImageUrl}${imagePath}`;
 
-            return (
-              // <Link to={`/shows/${media}/${id}`} className="featured" key={id}>
-              //   <img src={image} alt={name} />
-              //   <h3>{title || name}</h3>
-              //   <div className="information">
-              //     <h2 style={{ color: `${colorPicker(rating)}` }}>{rating}</h2>
-              //     <p>{releaseDate || firstAirDate}</p>
-              //   </div>
-              // </Link>
-              <CardList
-                key={id}
-                id={id}
-                image={image}
-                title={title || name}
-                releaseDate={releaseDate || firstAirDate}
-                rating={rating}
-                link={`/shows/${media}/${id}`}
-              />
-            );
-          }
-        )}
-      </div>
-    </section>
+                return (
+                  <CardList
+                    key={Math.random()}
+                    id={id}
+                    image={image}
+                    title={title || name}
+                    releaseDate={releaseDate || firstAirDate}
+                    rating={rating}
+                    link={`/shows/${media}/${id}`}
+                  />
+                );
+              }
+            )}
+          </div>
+        </section>
+      )}
+    </>
   );
 };
 

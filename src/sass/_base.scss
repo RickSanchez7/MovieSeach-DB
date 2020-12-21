@@ -14,8 +14,16 @@ $color-grey-dark-2: #777;
 
 $color-dark-primary: #081c22;
 
+$color-warning: #f08080;
+
 $shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
 $shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+@mixin shrinkLabel {
+  top: -14px;
+  font-size: 12px;
+  color: $color-primary;
+}
 
 * {
   padding: 0;
