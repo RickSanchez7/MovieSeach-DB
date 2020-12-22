@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, memo } from 'react';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ import CardList from '../CardList/CardList';
 
 import './Popular.scss';
 
-const Popular = ({ containerTitle, media, whatKind, myRef }) => {
+const Popular = memo(({ containerTitle, media, whatKind, myRef }) => {
   const [shows, setShows] = useState([]);
 
   const setImagebutton = useCallback(
@@ -65,7 +65,7 @@ const Popular = ({ containerTitle, media, whatKind, myRef }) => {
       </section>
     </>
   );
-};
+});
 
 export default Popular;
 

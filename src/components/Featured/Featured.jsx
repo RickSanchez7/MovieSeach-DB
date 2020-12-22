@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, memo } from 'react';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ import CardList from '../CardList/CardList';
 
 import './Featured.scss';
 
-const Featured = ({ mediaType, headTitle }) => {
+const Featured = memo(({ mediaType, headTitle }) => {
   const [shows, setShows] = useState('');
   const [active, setActive] = useState('day');
 
@@ -94,7 +94,7 @@ const Featured = ({ mediaType, headTitle }) => {
       )}
     </>
   );
-};
+});
 
 export default Featured;
 

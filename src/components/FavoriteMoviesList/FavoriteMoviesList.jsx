@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { FavoriteMoviesContext } from '../../context/favoriteMovies';
 
 import './FavoriteMoviesList.scss';
 
-const FavoriteMoviesList = () => {
+const FavoriteMoviesList = memo(() => {
   const { favoriteMovies } = useContext(FavoriteMoviesContext);
 
   const moviesLength = favoriteMovies.length === 0 ? '' : 'scrollList';
@@ -43,6 +43,6 @@ const FavoriteMoviesList = () => {
       </div>
     </div>
   );
-};
+});
 
 export default FavoriteMoviesList;
