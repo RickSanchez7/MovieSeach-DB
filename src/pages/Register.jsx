@@ -10,8 +10,7 @@ import './Signin.scss';
 const Register = () => {
   const history = useHistory();
   const [message, setMessage] = useState('');
-  const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
+  const { currentUser, getProfileAndUser } = useContext(CurrentUserContext);
 
   const [credentials, setCredentials] = useState({
     userName: '',
@@ -35,6 +34,7 @@ const Register = () => {
       setCredentials({ ...credentials, password: '', confirmPassword: '' });
     } else {
       await doRequest();
+      await getProfileAndUser();
     }
   };
 

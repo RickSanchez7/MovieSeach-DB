@@ -10,7 +10,6 @@ import './Signin.scss';
 const Signin = () => {
   const history = useHistory();
   const { currentUser, getProfileAndUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
 
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const { email, password } = credentials;
@@ -63,10 +62,10 @@ const Signin = () => {
         </form>
         {errors}
         <p className="to-register-page">
-          Don't have an account?{' '}
+          Don&apos;t have an account?
           <NavLink className="to-register-page-link" to="/register">
             Get one now!
-          </NavLink>{' '}
+          </NavLink>
         </p>
       </div>
     </div>

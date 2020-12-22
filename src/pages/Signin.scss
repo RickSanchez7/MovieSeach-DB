@@ -73,6 +73,7 @@
     .to-register-page-link {
       color: $color-primary;
       transition: color 0.2s linear;
+      margin-left: 0.5rem;
 
       &:hover {
         color: $color-primary-light;
