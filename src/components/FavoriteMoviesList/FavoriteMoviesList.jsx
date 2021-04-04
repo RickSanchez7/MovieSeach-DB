@@ -2,11 +2,14 @@ import React, { useContext, memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { FavoriteMoviesContext } from '../../context/favoriteMovies';
+import Loading from '../Loading/Loading';
 
 import './FavoriteMoviesList.scss';
 
 const FavoriteMoviesList = memo(() => {
   const { favoriteMovies } = useContext(FavoriteMoviesContext);
+
+  if (!favoriteMovies) return <Loading />;
 
   const moviesLength = favoriteMovies.length === 0 ? '' : 'scrollList';
 

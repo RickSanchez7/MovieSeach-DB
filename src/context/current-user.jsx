@@ -1,27 +1,25 @@
 import React, { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
-// import AuthReducer from './useReducer/auth/auth-reducer';
-// import { SIGNOUT, REGISTER, LOGIN } from './useReducer/auth/auth-actions';
-
 const CurrentUserContext = createContext();
 
 const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState('');
   const [profile, setProfile] = useState('');
 
-  // const [state, dispatch] = useReducer(AuthReducer, null);
-  // console.log('state', state);
-
   const getProfile = async () => {
-    const { data } = await axios.get('/api/v1/users/profile');
-    setProfile(data);
+    try {
+      const { data } = await axios.get('/api/v1/users/profile');
+      setProfile(data);
+    } catch (error) {}
   };
 
   const fetchCurrentUser = async () => {
-    const { data } = await axios.get('/api/v1/users/currentuser');
+    try {
+      const { data } = await axios.get('/api/v1/users/currentuser');
 
-    setCurrentUser(data.currentUser);
+      setCurrentUser(data.currentUser);
+    } catch (error) {}
   };
 
   const getProfileAndUser = async () => {
@@ -47,6 +45,7 @@ const CurrentUserProvider = ({ children }) => {
         getProfileAndUser,
         signout,
         profile,
+        setProfile,
         getProfile,
       }}
     >

@@ -9,9 +9,7 @@ import './Profile.scss';
 import FavoriteMoviesList from '../components/FavoriteMoviesList/FavoriteMoviesList';
 
 const Profile = () => {
-  const { currentUser, profile, getProfileAndUser } = useContext(
-    CurrentUserContext
-  );
+  const { currentUser, profile } = useContext(CurrentUserContext);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -26,21 +24,20 @@ const Profile = () => {
   });
 
   const handleSubmit = useCallback(
-    (e) => {
+    async (e) => {
       e.preventDefault();
       if (password !== confirmPassword) {
         setMessage('Passwords do not match');
       } else {
         doRequest();
         setMessage('updated!');
-        getProfileAndUser();
         setName('');
         setEmail('');
         setPassword('');
         setConfirmPassword('');
       }
     },
-    [confirmPassword, doRequest, getProfileAndUser, password]
+    [confirmPassword, doRequest, password]
   );
 
   useEffect(() => {
