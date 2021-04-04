@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/node:15.11.0
+      - image: cimg/node:14.15.5
     steps:
       - checkout
       - run: echo "npm installing"
@@ -10,7 +10,7 @@ jobs:
       - run: CI=true npm run build
   test:
     docker:
-      - image: cimg/node:15.11.0
+      - image: cimg/node:14.15.5
     steps:
       - checkout
       - run: echo "testing..."
