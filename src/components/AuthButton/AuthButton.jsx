@@ -30,6 +30,7 @@ const AuthButton = () => {
     signout();
     closeNavbar();
     closeAuthButton();
+    // change page if in profile page when sign out
     if (window.location.pathname === '/profile') {
       history.push('/');
     }
