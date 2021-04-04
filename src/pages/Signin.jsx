@@ -3,6 +3,8 @@ import { NavLink, Redirect, useHistory } from 'react-router-dom';
 
 import FormInput from '../components/FormInput/FormInput';
 import { CurrentUserContext } from '../context/current-user';
+import { FavoriteMoviesContext } from '../context/favoriteMovies';
+
 import UseRequest from '../hooks/use-request';
 
 import './Signin.scss';
@@ -10,6 +12,7 @@ import './Signin.scss';
 const Signin = () => {
   const history = useHistory();
   const { currentUser, getProfileAndUser } = useContext(CurrentUserContext);
+  const { getMovies } = useContext(FavoriteMoviesContext);
 
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const { email, password } = credentials;
@@ -26,6 +29,7 @@ const Signin = () => {
 
     await doRequest();
     await getProfileAndUser();
+    await getMovies();
   };
 
   const handleChange = (e) => {

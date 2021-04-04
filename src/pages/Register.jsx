@@ -3,6 +3,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 
 import FormInput from '../components/FormInput/FormInput';
 import { CurrentUserContext } from '../context/current-user';
+import { FavoriteMoviesContext } from '../context/favoriteMovies';
 import UseRequest from '../hooks/use-request';
 
 import './Signin.scss';
@@ -11,6 +12,7 @@ const Register = () => {
   const history = useHistory();
   const [message, setMessage] = useState('');
   const { currentUser, getProfileAndUser } = useContext(CurrentUserContext);
+  const { getMovies } = useContext(FavoriteMoviesContext);
 
   const [credentials, setCredentials] = useState({
     userName: '',
@@ -35,6 +37,7 @@ const Register = () => {
     } else {
       await doRequest();
       await getProfileAndUser();
+      await getMovies();
     }
   };
 
