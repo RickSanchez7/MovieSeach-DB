@@ -66,7 +66,6 @@ const Home = () => {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
-  // return <Loading />;
   if (!featured) {
     return <Loading />;
   }

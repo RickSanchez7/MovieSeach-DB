@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
 
+import LazyLoad from 'react-lazyload';
+
 import colorPicker from '../../utils/colorPicker';
 
 import AddFavoriteMovie from '../AddFavoriteMovie/AddFavoriteMovie';
@@ -11,11 +13,20 @@ import AddFavoriteMovie from '../AddFavoriteMovie/AddFavoriteMovie';
 import './CardList.scss';
 
 const CardList = ({ id, title, image, link, releaseDate, rating }) => {
+  const params = window.location.pathname;
+
   return (
     <>
       <div className="cardList" key={id}>
         <Link to={link}>
-          <img src={image} alt={title} />
+          <LazyLoad
+            height={200}
+            offset={100}
+            resize={true}
+            overflow={params !== '/' ? true : false}
+          >
+            <img src={image} alt={title} />
+          </LazyLoad>
         </Link>
         <h2 style={{ color: `${colorPicker(rating)}` }}>{rating}</h2>
         <AddFavoriteMovie

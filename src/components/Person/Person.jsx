@@ -2,6 +2,8 @@ import React from 'react';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
 
+import LazyLoad from 'react-lazyload';
+
 import { smallImageUrl } from '../../utils/url';
 
 import './Person.scss';
@@ -22,7 +24,9 @@ const Person = ({ person }) => {
   return (
     <div className="person-container">
       <div className="information">
-        <img src={`${smallImageUrl}${image}`} alt={name} />
+        <LazyLoad height={200} once resize={true} overflow={true}>
+          <img src={`${smallImageUrl}${image}`} alt={name} />
+        </LazyLoad>
         <div className="info">
           <h1>{name}</h1>
           <h2>personal info</h2>

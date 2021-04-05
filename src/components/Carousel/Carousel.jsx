@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 
 import { FetchRecommendations } from '../../utils/fetchData';
 import { smallImageUrl } from '../../utils/url';
@@ -77,7 +78,14 @@ const Carousel = ({ mediaType, id }) => {
           return (
             <div className={`article ${position}`} key={showId}>
               <Link to={`/shows/${mediaType}/${showId}`}>
-                <img src={image} alt={title} className={`show-img `} />
+                <LazyLoad
+                  height={500}
+                  offset={100}
+                  resize={true}
+                  scrollContainer
+                >
+                  <img src={image} alt={title} className={`show-img `} />
+                </LazyLoad>
                 <p className={`title `}>{title || name}</p>
               </Link>
             </div>

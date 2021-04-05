@@ -1,5 +1,6 @@
 import React, { useContext, memo } from 'react';
 import { NavLink } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 
 import { FavoriteMoviesContext } from '../../context/favoriteMovies';
 import Loading from '../Loading/Loading';
@@ -26,9 +27,18 @@ const FavoriteMoviesList = memo(() => {
                 <article className="media">
                   <div className="media-left">
                     <figure className="image">
-                      <NavLink to={movie.link}>
-                        <img src={movie.image} alt={movie.title} />
-                      </NavLink>
+                      <LazyLoad
+                        height={200}
+                        offset={300}
+                        // resize={true}
+                        overflow={true}
+                        scroll
+                        once
+                      >
+                        <NavLink to={movie.link}>
+                          <img src={movie.image} alt={movie.title} />
+                        </NavLink>
+                      </LazyLoad>
                     </figure>
                   </div>
                   <div className="media-content">
