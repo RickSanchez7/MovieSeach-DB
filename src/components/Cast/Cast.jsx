@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazyload';
 
 import { smallImageUrl } from '../../utils/url';
 
@@ -20,7 +21,9 @@ const Cast = ({ cast }) => {
 
           return (
             <NavLink to={`/person/${id}`} className="cast" key={id}>
-              <img src={image} alt={name} />
+              <LazyLoad height={200} offset={100} resize={true}>
+                <img src={image} alt={name} />
+              </LazyLoad>
               <h3>{character}</h3>
               <p>{name}</p>
             </NavLink>

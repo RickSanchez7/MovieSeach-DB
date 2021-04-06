@@ -46,7 +46,12 @@
       .show-img {
         position: relative;
         opacity: 1;
-        height: 100% !important;
+        height: 40rem;
+
+        @media screen and (max-width: 800px) {
+          width: 40rem;
+          height: 25rem;
+        }
       }
 
       .title {

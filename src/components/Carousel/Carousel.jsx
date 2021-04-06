@@ -78,12 +78,7 @@ const Carousel = ({ mediaType, id }) => {
           return (
             <div className={`article ${position}`} key={showId}>
               <Link to={`/shows/${mediaType}/${showId}`}>
-                <LazyLoad
-                  height={500}
-                  offset={100}
-                  resize={true}
-                  scrollContainer
-                >
+                <LazyLoad height={500} offset={100} resize={true}>
                   <img src={image} alt={title} className={`show-img `} />
                 </LazyLoad>
                 <p className={`title `}>{title || name}</p>

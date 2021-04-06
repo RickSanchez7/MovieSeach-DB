@@ -4,21 +4,24 @@ import axios from 'axios';
 const CurrentUserContext = createContext();
 
 const CurrentUserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
   const [profile, setProfile] = useState('');
 
   const getProfile = async () => {
     try {
       const { data } = await axios.get('/api/v1/users/profile');
-      setProfile(data);
+      if (data) {
+        setProfile(data);
+      }
     } catch (error) {}
   };
 
   const fetchCurrentUser = async () => {
     try {
       const { data } = await axios.get('/api/v1/users/currentuser');
-
-      setCurrentUser(data.currentUser);
+      if (data.currentUser) {
+        setCurrentUser(data.currentUser);
+      }
     } catch (error) {}
   };
 
