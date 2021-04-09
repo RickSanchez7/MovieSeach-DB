@@ -106,7 +106,6 @@ const Home = () => {
 
                   return (
                     <Link
-                      exact
                       to={`/shows/${media}/${id}`}
                       key={id}
                       className="dropdown-item"

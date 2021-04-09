@@ -5,12 +5,15 @@ import { GoTriangleDown } from 'react-icons/go';
 import { CurrentUserContext } from '../../context/current-user';
 import { AuthButtonContext } from '../../context/authButton';
 import { NavbarContext } from '../../context/navbar.context';
+import { FavoriteMoviesContext } from '../../context/favoriteMovies';
 
 import './AuthButton.scss';
 
 const AuthButton = () => {
   const history = useHistory();
   const { currentUser, signout, profile } = useContext(CurrentUserContext);
+
+  const { setFavoriteMovies } = useContext(FavoriteMoviesContext);
 
   const { closeNavbar } = useContext(NavbarContext);
   const { closeAuthButton, toggleAuthButton, stateAuth } = useContext(
@@ -28,6 +31,7 @@ const AuthButton = () => {
 
   const signoutButton = () => {
     signout();
+    setFavoriteMovies([]);
     closeNavbar();
     closeAuthButton();
     // change page if in profile page when sign out

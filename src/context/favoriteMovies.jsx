@@ -11,7 +11,7 @@ const FavoriteMoviesProvider = ({ children }) => {
 
   const getMovies = async () => {
     const { data } = await axios.get('/api/v1/movies/getmovies');
-    setFavoriteMovies(data.favoriteMovies);
+    setFavoriteMovies(await data.favoriteMovies);
   };
 
   useEffect(() => {
@@ -19,7 +19,9 @@ const FavoriteMoviesProvider = ({ children }) => {
   }, []);
 
   return (
-    <FavoriteMoviesContext.Provider value={{ getMovies, favoriteMovies }}>
+    <FavoriteMoviesContext.Provider
+      value={{ getMovies, favoriteMovies, setFavoriteMovies }}
+    >
       {children}
     </FavoriteMoviesContext.Provider>
   );

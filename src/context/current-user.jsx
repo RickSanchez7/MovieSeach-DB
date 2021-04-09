@@ -32,10 +32,9 @@ const CurrentUserProvider = ({ children }) => {
 
   const signout = async () => {
     const user = await axios.post('api/v1/users/signout');
-    console.log(user.data);
 
-    setCurrentUser(user.data);
-    setProfile(user.data);
+    setCurrentUser(await user.data.data);
+    setProfile(await user.data.data);
   };
 
   useEffect(() => {
