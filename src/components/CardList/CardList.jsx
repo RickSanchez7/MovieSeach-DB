@@ -28,7 +28,7 @@ const CardList = ({ id, title, image, link, releaseDate, rating }) => {
             <img src={image} alt={title} />
           </LazyLoad>
         </Link>
-        <h2 style={{ color: `${colorPicker(rating)}` }}>{rating}</h2>
+        <h2 style={{ color: `${colorPicker(rating)}` }}>{rating.toFixed(1)}</h2>
         <AddFavoriteMovie
           className="favorite-movie"
           id={rating}
