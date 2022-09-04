@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, memo } from 'react';
+import React, { useCallback, useEffect, useState, memo, useRef } from 'react';
 /* eslint-disable-next-line */
 import PropTypes from 'prop-types';
 
@@ -10,15 +10,72 @@ import CardList from '../CardList/CardList';
 import './Popular.scss';
 
 const Popular = memo(({ containerTitle, media, whatKind, myRef }) => {
+  const observer = useRef();
+  const mediaTypeRef = useRef();
+  const pageNumberRef = useRef(1);
+  const whatKindRef = useRef();
   const [shows, setShows] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [loading, setLoading] = useState(false);
 
-  const setImagebutton = useCallback(
-    async (page = 1) => {
-      const res = await FetchPopulars(media, page, whatKind);
+  const setImagebutton = useCallback(async () => {
+    setLoading(true);
+    try {
+      let res;
+      if (mediaTypeRef.current && mediaTypeRef.current !== media) {
+        setPageNumber(0);
+        pageNumberRef.current = 0;
+        res = await FetchPopulars(media, 1, whatKind);
+      } else if (whatKindRef.current && whatKindRef.current !== whatKind) {
+        setPageNumber(0);
+        pageNumberRef.current = 0;
+        res = await FetchPopulars(media, 1, whatKind);
+      } else {
+        res = await FetchPopulars(media, pageNumber, whatKind);
+      }
       const data = res.data.results;
-      setShows(data);
+      if (!mediaTypeRef.current) {
+        mediaTypeRef.current = media;
+        setShows(data);
+      }
+      if (mediaTypeRef.current !== media) {
+        setShows(data);
+        mediaTypeRef.current = media;
+      }
+
+      if (!whatKindRef.current) {
+        whatKindRef.current = whatKind;
+        setShows(data);
+      }
+      if (whatKindRef.current !== whatKind) {
+        setShows(data);
+        whatKindRef.current = whatKind;
+      }
+      if (pageNumberRef.current > 1) {
+        setShows((prev) => {
+          return [...new Set([...prev, ...data])];
+        });
+      }
+    } catch (err) {
+      console.error('error', err);
+    } finally {
+      setLoading(false);
+    }
+  }, [whatKind, media, pageNumber]);
+
+  const lastMovieElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setPageNumber((prevPageNumber) => prevPageNumber + 1);
+          pageNumberRef.current = pageNumberRef.current + 1;
+        }
+      });
+      if (node) observer.current.observe(node);
     },
-    [whatKind, media]
+    [loading]
   );
 
   useEffect(() => {
@@ -28,21 +85,25 @@ const Popular = memo(({ containerTitle, media, whatKind, myRef }) => {
   if (!shows) {
     return <Loading />;
   }
+
   return (
     <>
       <section className="section-popular">
         <h1 ref={myRef}>{containerTitle}</h1>
         <div className="container-popular">
           {shows.map(
-            ({
-              id,
-              title,
-              name,
-              poster_path: imagePath,
-              release_date: releaseDate,
-              first_air_date: firstAirDate,
-              vote_average: rating,
-            }) => {
+            (
+              {
+                id,
+                title,
+                name,
+                poster_path: imagePath,
+                release_date: releaseDate,
+                first_air_date: firstAirDate,
+                vote_average: rating,
+              },
+              index
+            ) => {
               const image =
                 imagePath === null
                   ? 'https://ctkbiotech.com/wp/wp-content/uploads/2018/03/not-available.jpg'
@@ -50,6 +111,9 @@ const Popular = memo(({ containerTitle, media, whatKind, myRef }) => {
 
               return (
                 <CardList
+                  myRef={
+                    shows.length === index + 1 ? lastMovieElementRef : null
+                  }
                   key={id}
                   id={id}
                   image={image}
@@ -61,6 +125,7 @@ const Popular = memo(({ containerTitle, media, whatKind, myRef }) => {
               );
             }
           )}
+          {loading ?? <Loading />}
         </div>
       </section>
     </>

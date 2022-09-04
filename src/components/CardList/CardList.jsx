@@ -12,12 +12,12 @@ import AddFavoriteMovie from '../AddFavoriteMovie/AddFavoriteMovie';
 
 import './CardList.scss';
 
-const CardList = ({ id, title, image, link, releaseDate, rating }) => {
+const CardList = ({ id, title, image, link, releaseDate, rating, myRef }) => {
   const params = window.location.pathname;
 
   return (
     <>
-      <div className="cardList" key={id}>
+      <div ref={myRef} className="cardList" key={id}>
         <Link to={link}>
           <LazyLoad
             height={200}
@@ -54,4 +54,10 @@ CardList.propTypes = {
   link: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
+  myRef: PropTypes.oneOfType([
+    // Either a function
+    PropTypes.func,
+    // Or the instance of a DOM native element (see the note about SSR)
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
 };

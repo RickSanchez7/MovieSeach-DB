@@ -38,7 +38,7 @@ const Movies = ({ match }) => {
 
   useEffect(() => {
     executeScroll();
-  }, [handleClick]);
+  }, [handleClick, media]);
 
   return (
     <div className="section-movies">
