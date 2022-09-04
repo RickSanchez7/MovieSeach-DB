@@ -106,7 +106,9 @@ const SingleShow = () => {
               <p>{overview}</p>
             </div>
             <div className="rating">
-              <h2 style={{ color: `${colorPicker(rating)}` }}>{rating}</h2>
+              <h2 style={{ color: `${colorPicker(rating)}` }}>
+                {rating.toFixed(1)}
+              </h2>
               <div className="star-rating">
                 {StarPicker(1.5, 0.5)}
                 {StarPicker(3.5, 2.5)}
