@@ -5,6 +5,7 @@
   flex-direction: column;
   height: 80vh;
   overflow-y: scroll;
+  margin-top: 6rem;
 
   &::-webkit-scrollbar {
     width: 1.2rem;
@@ -29,7 +30,7 @@
   }
 
   h1 {
-    margin-top: 6rem;
+    // margin-top: 6rem;
     font-size: 5rem;
     text-transform: capitalize;
 
